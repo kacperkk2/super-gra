@@ -23,6 +23,8 @@ export class AppSettings {
   public static START_OPTIONS: string[] = [AppSettings.START_TEAM1, AppSettings.START_TEAM2, AppSettings.START_RANDOM]
 
   public static ROUND_NAMES: string[] = ["Taboo", "Kalambury", "Jedno słowo", "Nucenie"]
+
+  public static CLICK_TIMEOUT: number = 500;
 }
 
 export class GameState {

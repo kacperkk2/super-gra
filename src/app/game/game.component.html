@@ -51,8 +51,8 @@
                 </div>
             </div>
             <div fxFlex="20" fxLayout="row" fxLayoutAlign="space-between start" style="background-color: rgb(169, 116, 190);">
-                <button mat-raised-button id="messed-card" (click)="messedCard()"> X </button>
-                <button mat-raised-button id="guessed-card" (click)="guessedCard()"> V </button>
+                <button mat-raised-button id="messed-card" (click)="messedCardDoubleClick()"> X </button>
+                <button mat-raised-button id="guessed-card" (click)="guessedCardDoubleClick()"> V </button>
             </div>
         </div>
         <div *ngIf="stateInTurn == inTurnAllStates.EMPTY_VIEW" fxFlex="95" fxLayout="row" fxFlexFill>

@@ -97,6 +97,16 @@ export class GameComponent implements OnInit {
     this.stateInTurn = TURN_STATE.CARD_VIEW;
   }
 
+  messedButtonClickCount = 0;
+  messedCardDoubleClick() {
+      this.messedButtonClickCount++;
+      setTimeout(() => {
+          if (this.messedButtonClickCount === 2) {
+              this.messedCard();
+          }
+          this.messedButtonClickCount = 0;
+      }, AppSettings.CLICK_TIMEOUT)
+  }
   messedCard() {
     if (this.messedCardStrategy == AppSettings.MESSED_CARD_BACK_TO_BUCKET) {
       this.messedCardsInTurn.push(this.currentCard);
@@ -112,6 +122,16 @@ export class GameComponent implements OnInit {
     this.afterCardDecision();
   }
 
+  guessedButtonClickCount = 0;
+  guessedCardDoubleClick() {
+      this.guessedButtonClickCount++;
+      setTimeout(() => {
+          if (this.guessedButtonClickCount === 2) {
+              this.guessedCard();
+          }
+          this.guessedButtonClickCount = 0;
+      }, AppSettings.CLICK_TIMEOUT)
+  }
   guessedCard() {
     this.pointsInRound[this.whoNowPlays]++;
     this.inTurnScore++;
