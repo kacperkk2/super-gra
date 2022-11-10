@@ -1,0 +1,128 @@
+
+    <div class="nav" fxLayout="row" fxLayoutAlign="center center">
+        <div class="nav-title">Runda {{currentRound}}: {{roundNames[currentRound - 1]}}</div>
+    </div>
+
+    <div *ngIf="state == allStates.BEFORE_TURN" fxLayout="column" fxFlexFill >
+        <div fxFlex="70" fxLayout="column" fxLayoutAlign="space-evenly center" style="background-color: rgb(190, 116, 116);">
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <div> {{timeForTurn | formatTime}} </div>
+                <mat-divider style="width: 100%"></mat-divider>
+                <div>czas na turę </div>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <div>{{notesLeftInRound.length}} </div>
+                <mat-divider style="width: 100%"></mat-divider>
+                <div>pozostałe hasła</div>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <mat-list fxLayout="row">
+                    <mat-list-item *ngFor="let member of teams[whoNowPlays]" fxLayout="row" fxLayoutAlign="center center">
+                        {{member}}
+                    </mat-list-item>
+                </mat-list>
+                <mat-divider style="width: 100%"></mat-divider>
+                <div>gracze tej tury </div>
+            </div>
+        </div>
+
+        <div fxFlex="30" fxLayout="column" fxLayoutAlign="start center" style="background-color: rgb(119, 190, 116);">
+            <button mat-raised-button (click)="goToPreStart()"> Dalej </button>
+        </div>
+    </div>
+
+    <div *ngIf="state == allStates.PRE_START" fxLayout="column" fxFlexFill>
+        <div fxFlex="5" fxLayout="column" fxLayoutAlign="start center" style="background-color: rgb(190, 116, 116);">
+            <div class="timer">{{counter | formatTime}}</div>
+        </div>
+        <div fxFlex="95" fxLayout="row" fxFlexFill style="background-color: rgb(169, 116, 190);">
+            <button mat-raised-button (click)="goToTurn()" style="width:100%"> Rozpocznij rundę! </button>
+        </div>
+    </div>
+
+    <div *ngIf="state == allStates.TURN" fxLayout="column" fxFlexFill>
+        <div fxFlex="5" fxLayout="column" fxLayoutAlign="start center" style="background-color: rgb(190, 116, 116);">
+            <div  class="timer">{{counter | formatTime}}</div>
+        </div>
+        <div *ngIf="stateInTurn == inTurnAllStates.CARD_VIEW" fxFlex="95" fxLayout="column" fxFlexFill>
+            <div fxFlex="75" fxLayout="column" fxLayoutAlign="center center" style="background-color: rgb(116, 190, 159);">
+                <div id="card">
+                    {{currentCard | uppercase}}
+                </div>
+            </div>
+            <div fxFlex="20" fxLayout="row" fxLayoutAlign="space-between start" style="background-color: rgb(169, 116, 190);">
+                <button mat-raised-button id="messed-card" (click)="messedCard()"> X </button>
+                <button mat-raised-button id="guessed-card" (click)="guessedCard()"> V </button>
+            </div>
+        </div>
+        <div *ngIf="stateInTurn == inTurnAllStates.EMPTY_VIEW" fxFlex="95" fxLayout="row" fxFlexFill>
+            <button mat-raised-button (click)="nextCard()" style="width:100%"> Pokaż hasło </button>
+        </div>
+    </div>
+
+    <div *ngIf="state == allStates.AFTER_TURN" fxLayout="column" fxFlexFill>
+        <div fxFlex="70" fxLayout="column" fxLayoutAlign="space-evenly center" style="background-color: rgb(190, 116, 116);">
+            <div>
+                {{notesLeftInRound.length == 0 ? "Wszystkie hasła zostały zgadnięte" : "Koniec tury"}}
+            </div>
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <div>{{inTurnScore}} </div>
+                <mat-divider style="width: 100%"></mat-divider>
+                <div>zgadnięte hasła w turze</div>
+            </div>
+        </div>
+
+        <div fxFlex="30" fxLayout="column" fxLayoutAlign="start center" style="background-color: rgb(119, 190, 116);">
+            <button mat-raised-button (click)="goToNewTurnOrNewRound()"> Dalej </button>
+        </div>
+    </div>
+
+    <div *ngIf="state == allStates.AFTER_ROUND" fxLayout="column" fxFlexFill>
+        <div fxFlex="70" fxLayout="column" fxLayoutAlign="space-evenly center" style="background-color: rgb(190, 116, 116);">
+            <div>
+                {{"Koniec rundy " + currentRound}}
+            </div>
+            <div>
+                {{"+" + pointsInRound[0]}} {{"+" + pointsInRound[1]}}
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <mat-list>
+                    <mat-list-item *ngFor="let member of teams[0]" fxLayout="row" fxLayoutAlign="center center">
+                        {{member}}
+                    </mat-list-item>
+                </mat-list>
+                <div>{{totalPoints[0] + " : " + totalPoints[1]}} </div>
+                <mat-list>
+                    <mat-list-item *ngFor="let member of teams[1]" fxLayout="row" fxLayoutAlign="center center">
+                        {{member}}
+                    </mat-list-item>
+                </mat-list>
+            </div>
+        </div>
+
+        <div fxFlex="30" fxLayout="column" fxLayoutAlign="start center" style="background-color: rgb(119, 190, 116);">
+            <button mat-raised-button (click)="goToBeforeTurnOrAfterGame()"> Dalej </button>
+        </div>
+    </div>
+
+    <div *ngIf="state == allStates.AFTER_GAME" fxLayout="column" fxFlexFill>
+        <div fxFlex="70" fxLayout="column" fxLayoutAlign="space-evenly center" style="background-color: rgb(190, 116, 116);">
+            <div>
+                {{"Koniec gry!"}}
+            </div>
+            <div *ngIf="totalPoints[0] == totalPoints[1]">
+                {{"Remis!"}}
+            </div>
+            <div *ngIf="totalPoints[0] != totalPoints[1]">
+                {{"Gurom: "}} {{totalPoints[0] > totalPoints[1] ? teams[0] : teams[1]}}
+                {{"Dołem: "}} {{totalPoints[0] > totalPoints[1] ? teams[1] : teams[0]}}
+            </div>
+            <div *ngIf="totalPoints[0] != totalPoints[1]">
+                {{(totalPoints[0] > totalPoints[1]) ? totalPoints[0] : totalPoints[1] + " : " + (totalPoints[0] > totalPoints[1]) ? totalPoints[1] : totalPoints[0]}}
+            </div>
+        </div>
+
+        <div fxFlex="30" fxLayout="column" fxLayoutAlign="start center" style="background-color: rgb(119, 190, 116);">
+            <button mat-raised-button (click)="goToMain()"> Ekran główny </button>
+        </div>
+    </div>

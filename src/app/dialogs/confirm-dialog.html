@@ -1,0 +1,9 @@
+<div mat-dialog-content>
+    <p style="text-align: center;">{{message}}</p>
+</div>
+<div mat-dialog-actions>
+    <div fxLayout="row" fxFlexFill fxLayoutAlign="space-evenly center">
+    <button mat-button (click)="onNoClick()">Wróć</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Tak</button>
+    </div>
+</div>

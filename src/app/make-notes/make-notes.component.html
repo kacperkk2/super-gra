@@ -1,0 +1,32 @@
+<div class="nav" fxLayout="row" fxLayoutAlign="center center">
+    <div class="back-icon-wrapper" (click)="back()" >
+        <mat-icon class="icon-default"  fontIcon="keyboard_arrow_left"></mat-icon>
+    </div>
+    <div class="nav-title">Dołączanie do gry</div>
+</div>
+
+<div fxLayout="column" fxFlexFill fxLayoutAlign="space-evenly center">
+    <div fxFlex="70">
+        <div fxLayout="column" fxFlexFill fxLayoutAlign="center center">
+            <p>Użytkownik: {{username}}</p>
+
+            <mat-form-field style="width:280px; text-align: center;">
+                <mat-label>Miejsce</mat-label>
+                <input matInput placeholder="Podaj imię" [(ngModel)]="place" required="true">
+            </mat-form-field>
+
+            <mat-form-field style="width:280px; text-align: center">
+                <mat-label>Wydarzenie</mat-label>
+                <input matInput placeholder="Podaj imię" [(ngModel)]="event" required="true">
+            </mat-form-field>
+
+            <mat-form-field style="width:280px; text-align: center">
+                <mat-label>Osoba/rzecz</mat-label>
+                <input matInput placeholder="Podaj imię" [(ngModel)]="thing" required="true">
+            </mat-form-field>
+        </div>
+    </div>
+    <div fxFlex="30">
+        <button mat-raised-button (click)="saveNotes()">Prześlij</button>
+    </div>
+</div>

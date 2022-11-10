@@ -1,0 +1,43 @@
+<div class="nav" fxLayout="row" fxLayoutAlign="center center">
+  <div class="back-icon-wrapper" (click)="back()" >
+      <mat-icon class="icon-default"  fontIcon="keyboard_arrow_left"></mat-icon>
+  </div>
+  <div class="nav-title">Lobby</div>
+</div>
+
+<div class="tab-container">
+    <table mat-table [dataSource]="dataSource" style="width: 100%;">
+      <ng-container matColumnDef="gracz">
+        <th mat-header-cell *matHeaderCellDef>Gracz</th>
+        <td mat-cell *matCellDef="let element">{{element.username}}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="host">
+        <th mat-header-cell *matHeaderCellDef>Host</th>
+        <td mat-cell *matCellDef="let element"><mat-icon *ngIf="element.host" fontIcon="check"></mat-icon></td>
+      </ng-container>
+    
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element"><mat-icon *ngIf="element.ready" fontIcon="check"></mat-icon></td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+          mat-row *matRowDef="let row; columns: displayedColumns;"
+      ></tr>
+    </table>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-around center" style="margin-top: 50px">
+  <button mat-raised-button *ngIf="!isHostPicked" (click)="becomeHost()">Zostań hostem</button>
+  <!-- <button mat-raised-button (click)="fetchUsers()">Odśwież</button> -->
+  <button mat-raised-button 
+      *ngIf="isHostPicked"
+      [disabled]="!readyToStart" 
+      (click)="beginGame()" 
+      matTooltip="Gracze nie gotowi lub host nie został wybrany" 
+      [matTooltipDisabled]="readyToStart">Rozpocznij grę</button>
+      <!-- odswiez na czas, jesli hosta nie ma to guzik do hosta na srodku, a rozpocznij nie widoczne, a jesli jest host to rozpocznij na srodku z disablem -->
+</div>
+
+

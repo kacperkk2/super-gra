@@ -1,0 +1,19 @@
+<div class="nav" fxLayout="row" fxLayoutAlign="center center">
+    <div class="back-icon-wrapper" (click)="back()" >
+        <mat-icon class="icon-default"  fontIcon="keyboard_arrow_left"></mat-icon>
+    </div>
+    <div class="nav-title">Dołączanie do gry</div>
+</div>
+<div fxLayout="column" fxFlexFill fxLayoutAlign="space-evenly center">
+    <div fxFlex="70">
+        <div fxLayout="column" fxFlexFill fxLayoutAlign="center center">
+            <mat-form-field style="width:280px; text-align: center;">
+                <mat-label>Jak się nazywasz?</mat-label>
+                <input matInput placeholder="Podaj imię" [(ngModel)]="username" required="true">
+            </mat-form-field>
+        </div>
+    </div>
+    <div fxFlex="30">
+        <button mat-raised-button (click)="saveUsername()">Dalej</button>
+    </div>
+</div>
