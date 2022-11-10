@@ -61,6 +61,7 @@ export class LobbyComponent implements OnInit {
     this.notesClient.setHost(username!).subscribe(
       (userDto) => {
         this.isUserHost = true;
+        this.notesClient.startGame().subscribe();
         this.fetchUsers();
       },
       (error) => {

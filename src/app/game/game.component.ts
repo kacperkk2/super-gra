@@ -1,5 +1,5 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppSettings } from '../appSettings.module';
 import { NotesClientService } from '../services/notes-client.service';
@@ -38,8 +38,8 @@ export class GameComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private notesClient: NotesClientService) { }
 
   ngOnInit(): void {
+    this.blockRefreshAndPageBack();
     this.notesClient.deleteAllUsers().subscribe();
-    this.notesClient.startGame().subscribe();
     this.state = GAME_STATE.BEFORE_TURN;
     this.route.queryParams.subscribe(params => {
       this.teams = [params['team1'], params['team2']];
@@ -52,6 +52,17 @@ export class GameComponent implements OnInit {
     this.pointsInRound = [0, 0];
     this.totalPoints = [0, 0];
     this.notesLeftInRound = this.shuffle([...this.notes]);
+  }
+
+  blockRefreshAndPageBack() {
+    window.addEventListener("beforeunload", function (e) {
+      var confirmationMessage = "Po wyjściu ze strony cały progres zostanie utracony";
+      e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+      return confirmationMessage;              // Gecko, WebKit, Chrome <34
+    });
+    window.addEventListener("popstate", function (e) {
+        history.go(1);
+    });
   }
 
   getStartStrategy(startStrategy: string) {

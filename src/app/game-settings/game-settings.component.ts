@@ -29,20 +29,16 @@ export class GameSettingsComponent implements OnInit {
     if (localStorage.getItem(GameState.HOST) != "true") {
       this.router.navigate([""]);
     }
-    // ustawienie w bazie ze trwa gra?
     this.notesClient.getUsers().subscribe(fetchedUsers => {
       this.users = fetchedUsers.map(user => user.username);
+      this.users = this.shuffle(this.users);
+      this.team1 = this.users.slice(0, Math.floor(this.users.length / 2));
+      this.team2 = this.users.slice(Math.floor(this.users.length / 2));
     });
     this.notesClient.getNotes().subscribe(fetchedNotes => {
       this.notes = fetchedNotes.map(note => note.content);
       console.log(this.notes);
     });
-    
-    this.users = this.shuffle(this.users);
-    // this.users = ["kacper", "klaudia", "witko", "witkorrrrr", "tomaasz", "firankamen"];
-    // this.users = this.shuffle(this.users);
-    this.team1 = this.users.slice(0, Math.floor(this.users.length / 2))
-    this.team2 = this.users.slice(Math.floor(this.users.length / 2))
   }
 
   moveFrom1To2(memberToMove: string) {
