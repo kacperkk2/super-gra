@@ -10,7 +10,7 @@ import {MatFormFieldModule, } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon'
@@ -28,6 +28,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { GameComponent } from './game/game.component';
 import { FormatTimePipe } from './game/pipe';
 import { StopGameComponent } from './stop-game/stop-game.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { StopGameComponent } from './stop-game/stop-game.component';
     GameSettingsComponent,
     GameComponent,
     FormatTimePipe,
-    StopGameComponent
+    StopGameComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +63,8 @@ import { StopGameComponent } from './stop-game/stop-game.component';
     HttpClientModule,
     MatTooltipModule,
     MatListModule,
-    MatRadioModule
+    MatRadioModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

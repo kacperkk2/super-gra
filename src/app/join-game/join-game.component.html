@@ -7,13 +7,28 @@
 <div fxLayout="column" fxFlexFill fxLayoutAlign="space-evenly center">
     <div fxFlex="70">
         <div fxLayout="column" fxFlexFill fxLayoutAlign="center center">
-            <mat-form-field style="width:280px; text-align: center;">
-                <mat-label>Jak się nazywasz?</mat-label>
-                <input matInput placeholder="Podaj imię" [(ngModel)]="username" required="true" autocomplete="off">
-            </mat-form-field>
+            <form [formGroup]="usernameForm">
+                    <mat-form-field style="width:280px; text-align: center;">
+                        <mat-label>Jak się nazywasz?</mat-label>
+                        <input matInput placeholder="Podaj imię" formControlName="username" autocomplete="off">
+                        <mat-error>
+                            {{usernameValidationMessage}}
+                        </mat-error>
+                    </mat-form-field>
+            </form>
         </div>
     </div>
     <div fxFlex="30">
-        <button mat-raised-button (click)="saveUsername()">Dalej</button>
+        <button mat-raised-button [disabled]="!usernameForm.valid" (click)="saveUsername()">Dalej</button>
     </div>
 </div>
+
+<!-- <form [formGroup]="profileForm">
+
+    <label for="first-name">First Name: </label>
+    <input id="first-name" type="text" formControlName="firstName">
+  
+    <label for="last-name">Last Name: </label>
+    <input id="last-name" type="text" formControlName="lastName">
+  
+  </form> -->

@@ -13,6 +13,7 @@ export class MakeNotesComponent implements OnInit {
   event: string = "";
   thing: string = "";
   username: string | null = "";
+  noteValidationMessage: string = "Nie może być puste i co najwyżej 3 wyrazy";
 
   constructor(private router: Router, private notesClient: NotesClientService) { }
 
@@ -24,7 +25,6 @@ export class MakeNotesComponent implements OnInit {
   }
 
   saveNotes() {
-    console.log(this.username)
     this.notesClient.sendNotes(this.username, {place: this.place, event: this.event, thing: this.thing}).subscribe(
         () => {
           localStorage.setItem(GameState.GAME_STATE_KEY, GameState.NOTES_SEND_COMPLETED);

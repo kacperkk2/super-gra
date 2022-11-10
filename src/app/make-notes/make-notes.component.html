@@ -13,16 +13,25 @@
             <mat-form-field style="width:280px; text-align: center;">
                 <mat-label>Miejsce</mat-label>
                 <input matInput placeholder="Podaj imię" [(ngModel)]="place" required="true" autocomplete="off">
+                <mat-error>
+                    {{noteValidationMessage}}
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field style="width:280px; text-align: center">
                 <mat-label>Wydarzenie</mat-label>
                 <input matInput placeholder="Podaj imię" [(ngModel)]="event" required="true" autocomplete="off">
+                <mat-error>
+                    {{noteValidationMessage}}
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field style="width:280px; text-align: center">
                 <mat-label>Osoba/rzecz</mat-label>
                 <input matInput placeholder="Podaj imię" [(ngModel)]="thing" required="true" autocomplete="off">
+                <mat-error>
+                    {{noteValidationMessage}}
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
