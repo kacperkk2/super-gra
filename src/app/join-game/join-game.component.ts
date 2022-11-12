@@ -20,7 +20,7 @@ export class JoinGameComponent implements OnInit {
   usernameForm = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(10)])
   });
-  usernameValidationMessage: string = "Imie musi być dłuższe niż 3 znaki i krótsze niż 10";
+  usernameValidationMessage: string = "Nick musi być dłuższy niż 3 znaki i krótszy niż 10";
 
   constructor(private router: Router, private notesClient: NotesClientService, public dialog: MatDialog, fb: FormBuilder) { }
 
@@ -37,7 +37,7 @@ export class JoinGameComponent implements OnInit {
   }
 
   saveUsername() {
-    const username = this.usernameForm.controls['username'].value!;
+    const username = this.usernameForm.controls['username'].value!.trim();
     this.notesClient.sendUser({username: username, isReady: false, isHost: false}).subscribe(
         (userDto) => {
           localStorage.setItem(GameState.USERNAME, username);

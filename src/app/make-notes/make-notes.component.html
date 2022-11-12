@@ -10,32 +10,34 @@
         <div fxLayout="column" fxFlexFill fxLayoutAlign="center center">
             <p>Użytkownik: {{username}}</p>
 
-            <mat-form-field style="width:280px; text-align: center;">
-                <mat-label>Miejsce</mat-label>
-                <input matInput placeholder="Podaj imię" [(ngModel)]="place" required="true" autocomplete="off">
-                <mat-error>
-                    {{noteValidationMessage}}
-                </mat-error>
-            </mat-form-field>
+            <form [formGroup]="notesForm" fxLayout="column">
+                <mat-form-field style="width:280px; text-align: center;">
+                    <mat-label>Miejsce</mat-label>
+                    <input matInput placeholder="Wpisz hasło - miejsce" formControlName="place" autocomplete="off">
+                    <mat-error>
+                        {{noteValidationMessage}}
+                    </mat-error>
+                </mat-form-field>
 
-            <mat-form-field style="width:280px; text-align: center">
-                <mat-label>Wydarzenie</mat-label>
-                <input matInput placeholder="Podaj imię" [(ngModel)]="event" required="true" autocomplete="off">
-                <mat-error>
-                    {{noteValidationMessage}}
-                </mat-error>
-            </mat-form-field>
+                <mat-form-field style="width:280px; text-align: center">
+                    <mat-label>Wydarzenie</mat-label>
+                    <input matInput placeholder="Wpisz hasło - wydarzenie" formControlName="event" autocomplete="off">
+                    <mat-error>
+                        {{noteValidationMessage}}
+                    </mat-error>
+                </mat-form-field>
 
-            <mat-form-field style="width:280px; text-align: center">
-                <mat-label>Osoba/rzecz</mat-label>
-                <input matInput placeholder="Podaj imię" [(ngModel)]="thing" required="true" autocomplete="off">
-                <mat-error>
-                    {{noteValidationMessage}}
-                </mat-error>
-            </mat-form-field>
+                <mat-form-field style="width:280px; text-align: center">
+                    <mat-label>Osoba/rzecz</mat-label>
+                    <input matInput placeholder="Wpisz hasło - osoba/rzecz" formControlName="thing" autocomplete="off">
+                    <mat-error>
+                        {{noteValidationMessage}}
+                    </mat-error>
+                </mat-form-field>
+            </form>
         </div>
     </div>
     <div fxFlex="30">
-        <button mat-raised-button (click)="saveNotes()">Prześlij</button>
+        <button mat-raised-button [disabled]="!notesForm.valid" (click)="saveNotes()">Prześlij</button>
     </div>
 </div>

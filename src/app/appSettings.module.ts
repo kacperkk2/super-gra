@@ -25,6 +25,7 @@ export class AppSettings {
   public static ROUND_NAMES: string[] = ["Taboo", "Kalambury", "Jedno słowo", "Nucenie"]
 
   public static CLICK_TIMEOUT: number = 500;
+  public static MAX_WORDS_IN_NOTE: number = 3;
 }
 
 export class GameState {

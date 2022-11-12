@@ -100,10 +100,10 @@ export class GameComponent implements OnInit {
   messedButtonClickCount = 0;
   messedCardDoubleClick() {
       this.messedButtonClickCount++;
+      if (this.messedButtonClickCount === 2) {
+          this.messedCard();
+      }
       setTimeout(() => {
-          if (this.messedButtonClickCount === 2) {
-              this.messedCard();
-          }
           this.messedButtonClickCount = 0;
       }, AppSettings.CLICK_TIMEOUT)
   }
@@ -125,10 +125,10 @@ export class GameComponent implements OnInit {
   guessedButtonClickCount = 0;
   guessedCardDoubleClick() {
       this.guessedButtonClickCount++;
+      if (this.guessedButtonClickCount === 2) {
+          this.guessedCard();
+      }
       setTimeout(() => {
-          if (this.guessedButtonClickCount === 2) {
-              this.guessedCard();
-          }
           this.guessedButtonClickCount = 0;
       }, AppSettings.CLICK_TIMEOUT)
   }
