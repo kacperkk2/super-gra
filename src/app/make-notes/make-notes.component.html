@@ -11,7 +11,7 @@
             <p>Użytkownik: {{username}}</p>
 
             <form [formGroup]="notesForm" fxLayout="column">
-                <mat-form-field style="width:280px; text-align: center;">
+                <mat-form-field class="note-field">
                     <mat-label>Miejsce</mat-label>
                     <input matInput placeholder="Wpisz hasło - miejsce" formControlName="place" autocomplete="off">
                     <mat-error>
@@ -19,7 +19,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field style="width:280px; text-align: center">
+                <mat-form-field class="note-field">
                     <mat-label>Wydarzenie</mat-label>
                     <input matInput placeholder="Wpisz hasło - wydarzenie" formControlName="event" autocomplete="off">
                     <mat-error>
@@ -27,7 +27,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field style="width:280px; text-align: center">
+                <mat-form-field class="note-field">
                     <mat-label>Osoba/rzecz</mat-label>
                     <input matInput placeholder="Wpisz hasło - osoba/rzecz" formControlName="thing" autocomplete="off">
                     <mat-error>
@@ -38,6 +38,6 @@
         </div>
     </div>
     <div fxFlex="30">
-        <button mat-raised-button [disabled]="!notesForm.valid" (click)="saveNotes()">Prześlij</button>
+        <button mat-raised-button class="generic-button" [disabled]="!notesForm.valid" (click)="saveNotes()">Prześlij</button>
     </div>
 </div>

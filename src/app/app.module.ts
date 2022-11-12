@@ -20,7 +20,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { MakeNotesComponent } from './make-notes/make-notes.component';
 import { LobbyComponent } from './lobby/lobby.component';
-import { MessageDialog, ConfirmDialog } from './dialogs/dialogs';
+import { MessageDialog, ConfirmDialog, TimeAdjustDialog } from './dialogs/dialogs';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { GameSettingsComponent } from './game-settings/game-settings.component';
 import {MatListModule} from '@angular/material/list';
@@ -40,6 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LobbyComponent,
     MessageDialog,
     ConfirmDialog,
+    TimeAdjustDialog,
     GameSettingsComponent,
     GameComponent,
     FormatTimePipe,

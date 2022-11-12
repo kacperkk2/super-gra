@@ -12,6 +12,29 @@
     color: white;
 }
 
+.timer {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.smaller-fab {
+    width: 40px;
+    height: 40px;
+    line-height: 20px;
+    font-size: 20px;
+
+    &::ng-deep .mat-button-wrapper{
+        line-height: 20px;
+        padding: 0;
+
+         .mat-icon {
+             font-size: 20px;
+             padding-right: 1px;
+             padding-top: 5px;
+         }
+   }
+}
+
 .setting-title {
     text-align: center;
 }

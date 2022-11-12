@@ -26,3 +26,28 @@ export class ConfirmDialog {
         this.dialogRef.close();
     }
 }
+
+@Component({
+    selector: 'time-adjust-dialog',
+    templateUrl: 'time-adjust-dialog.html',
+})
+export class TimeAdjustDialog {
+    constructor(
+        public dialogRef: MatDialogRef<TimeAdjustDialog>,
+        @Inject(MAT_DIALOG_DATA) public timeForTurn: number,
+    ) {}
+
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+
+    addTime(): void {
+        this.timeForTurn = Number(this.timeForTurn);
+        this.timeForTurn += 5;
+    }
+
+    subTime(): void {
+        this.timeForTurn = Number(this.timeForTurn);
+        this.timeForTurn -= 5;
+    }
+}

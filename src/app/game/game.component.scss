@@ -1,13 +1,22 @@
 #guessed-card {
     background-color: #32CD32;
+    width: 50%;
+    height: 100px
 }
 
 #messed-card {
     background-color: #dc143ce3;
+    width: 50%;
+    height: 100px
 }
 
 .timer {
-    font-size: 25px;
+    font-size: 30px;
+}
+
+.timer-red {
+    font-size: 30px;
+    color: rgb(197, 53, 53);
 }
 
 #card {
@@ -15,4 +24,17 @@
     text-align: center; 
     overflow-wrap: anywhere;
     white-space: pre-line;
+}
+
+.next-note {
+    font-size: 20px;
+    border-radius: 30px !important;
+    width: 80%;
+    height: 50%;
+}
+
+.decision-icon {
+    font-weight: bold;
+    color: white;
+    font-size: 50px;
 }

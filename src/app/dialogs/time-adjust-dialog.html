@@ -1,0 +1,20 @@
+
+<div mat-dialog-content>
+  <div fxLayout="row" fxLayoutAlign="space-evenly center">
+    <button mat-raised-button (click)="subTime()">
+        <mat-icon fontIcon="horizontal_rule"></mat-icon>
+    </button>
+    <div class="timer">
+        {{timeForTurn | formatTime}}
+    </div>
+    <button mat-raised-button (click)="addTime()">
+        <mat-icon fontIcon="add"></mat-icon>
+    </button>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <div fxLayout="row" fxFlexFill fxLayoutAlign="center center">
+    <button mat-button (click)="onNoClick()">Wróć</button>
+    <button mat-button [mat-dialog-close]="timeForTurn" cdkFocusInitial>Potwierdź</button>
+  </div>
+</div>

@@ -9,9 +9,9 @@
                 <div class="team-holder">
                     <mat-list>
                         <button class="player" mat-stroked-button *ngFor="let member of team1" (click)="moveFrom1To2(member)">
-                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxLayout="row" fxLayoutAlign="center center">
                                 <div> {{member}} </div> 
-                                <mat-icon fxLayoutAlign="center center" class="player-icon" fontIcon="arrow_forward"></mat-icon>
+                                <!-- <mat-icon fxLayoutAlign="center center" class="player-icon" fontIcon="arrow_forward"></mat-icon> -->
                             </div>
                         </button>
                     </mat-list>
@@ -23,8 +23,8 @@
                 <div class="team-holder">
                     <mat-list>
                         <button class="player" mat-stroked-button *ngFor="let member of team2" (click)="moveFrom2To1(member)">
-                            <div fxLayout="row" fxLayoutAlign="space-between center">
-                                <mat-icon fxLayoutAlign="center center" class="player-icon" fontIcon="arrow_back"></mat-icon>
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <!-- <mat-icon fxLayoutAlign="center center" class="player-icon" fontIcon="arrow_back"></mat-icon> -->
                                 <div> {{member}} </div> 
                             </div>
                         </button>
@@ -33,22 +33,22 @@
             </div>
         </div>
 
-        <div >
+        <div>
             <p class="setting-title">Czas pojedynczej tury: </p>
-            <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                <button mat-raised-button (click)="subTime()">
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <button mat-fab class="smaller-fab" (click)="subTime()">
                     <mat-icon fontIcon="horizontal_rule"></mat-icon>
                 </button>
-                <div>
+                <div class="timer">
                     {{timeForTurn | formatTime}}
                 </div>
-                <button mat-raised-button (click)="addTime()">
+                <button mat-fab class="smaller-fab" (click)="addTime()">
                     <mat-icon fontIcon="add"></mat-icon>
                 </button>
             </div>
         </div>
 
-        <div fxLayout="row"  fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="center center">
             <div fxLayout="row" fxFlexFill fxLayoutAlign="space-evenly start">
                 <div>
                     <p class="setting-title">Po spaleniu hasła: </p>
@@ -70,6 +70,6 @@
             </div>
         </div>
         <div fxLayout="row" fxLayoutAlign="center center">
-            <button mat-raised-button (click)="startGame()">Rozpocznij grę</button>
+            <button mat-raised-button class="generic-button" (click)="startGame()">Rozpocznij grę</button>
         </div>
     </div>

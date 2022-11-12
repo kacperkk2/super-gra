@@ -29,9 +29,10 @@
     </table>
 </div>
 <div fxLayout="row" fxLayoutAlign="space-around center" style="margin-top: 50px">
-  <button mat-raised-button *ngIf="!isHostPicked" (click)="becomeHost()">Zostań hostem</button>
+  <button mat-raised-button class="generic-button" *ngIf="!isHostPicked" (click)="becomeHost()">Zostań hostem</button>
   <!-- <button mat-raised-button (click)="fetchUsers()">Odśwież</button> -->
   <button mat-raised-button 
+      class="generic-button"
       *ngIf="isHostPicked"
       [disabled]="!readyToStart" 
       (click)="beginGame()" 

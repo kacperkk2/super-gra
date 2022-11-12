@@ -1,7 +1,9 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppSettings } from '../appSettings.module';
+import { TimeAdjustDialog } from '../dialogs/dialogs';
 import { NotesClientService } from '../services/notes-client.service';
 
 @Component({
@@ -11,7 +13,7 @@ import { NotesClientService } from '../services/notes-client.service';
 })
 export class GameComponent implements OnInit {
   // const data
-  timeForTurn: number = 0;
+  defaultTimeForTurn: number = 0;
   teams: string[][] = [];
   notes: string[] = [];
   roundNames: string[] = AppSettings.ROUND_NAMES;
@@ -28,6 +30,7 @@ export class GameComponent implements OnInit {
   messedCardsInTurn: string[] = [];
   inTurnScore: number = 0;
   counter: number = 0;
+  timeForTurn: number = 0;
 
   // state
   state: GAME_STATE = GAME_STATE.BEFORE_TURN;
@@ -35,7 +38,7 @@ export class GameComponent implements OnInit {
   stateInTurn: TURN_STATE = TURN_STATE.CARD_VIEW;
   inTurnAllStates = TURN_STATE;
 
-  constructor(private route: ActivatedRoute, private router: Router, private notesClient: NotesClientService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private notesClient: NotesClientService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.blockRefreshAndPageBack();
@@ -45,6 +48,7 @@ export class GameComponent implements OnInit {
       this.teams = [params['team1'], params['team2']];
       this.notes = params['notes'];
       this.timeForTurn = params['timeForTurn'];
+      this.defaultTimeForTurn = params['timeForTurn'];
       this.messedCardStrategy = params['messedCardStrategy'];
       this.whoStartsRound = this.getStartStrategy(params['startStrategy']);
       this.whoNowPlays = this.whoStartsRound;
@@ -78,6 +82,15 @@ export class GameComponent implements OnInit {
     else {
       return TURN.TEAM2;
     }
+  }
+
+  showTimeAdjustDialog() {
+    const dialogRef = this.dialog.open(TimeAdjustDialog, {width: '60%', data: this.defaultTimeForTurn});
+    dialogRef.afterClosed().subscribe(newTimeForTurn => {
+      if (newTimeForTurn != null) {
+        this.timeForTurn = newTimeForTurn;
+      }
+    });
   }
 
   goToPreStart() {
@@ -159,6 +172,7 @@ export class GameComponent implements OnInit {
   }
 
   goToNewTurnOrNewRound() {
+    this.timeForTurn = this.defaultTimeForTurn;
     if (this.notesLeftInRound.length == 0) {
       this.totalPoints[0] += this.pointsInRound[0];
       this.totalPoints[1] += this.pointsInRound[1];
