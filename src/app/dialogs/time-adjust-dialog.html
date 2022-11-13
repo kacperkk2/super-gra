@@ -1,13 +1,13 @@
 
 <div mat-dialog-content>
   <div fxLayout="row" fxLayoutAlign="space-evenly center">
-    <button mat-raised-button (click)="subTime()">
+    <button mat-raised-button color="primary" (click)="subTime()">
         <mat-icon fontIcon="horizontal_rule"></mat-icon>
     </button>
     <div class="timer">
         {{timeForTurn | formatTime}}
     </div>
-    <button mat-raised-button (click)="addTime()">
+    <button mat-raised-button color="primary" (click)="addTime()">
         <mat-icon fontIcon="add"></mat-icon>
     </button>
   </div>

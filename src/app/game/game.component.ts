@@ -2,7 +2,7 @@ import { ThisReceiver } from '@angular/compiler';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppSettings } from '../appSettings.module';
+import { AppSettings, GameState } from '../appSettings.module';
 import { TimeAdjustDialog } from '../dialogs/dialogs';
 import { NotesClientService } from '../services/notes-client.service';
 
@@ -43,9 +43,10 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.blockRefreshAndPageBack();
     this.notesClient.deleteAllUsers().subscribe();
-    this.state = GAME_STATE.BEFORE_TURN;
+    this.state = GAME_STATE.AFTER_GAME;
     this.route.queryParams.subscribe(params => {
-      this.teams = [params['team1'], params['team2']];
+      // this.teams = [params['team1'], params['team2']];
+      this.teams = [['asd', 'asd'], []];
       this.notes = params['notes'];
       this.timeForTurn = params['timeForTurn'];
       this.defaultTimeForTurn = params['timeForTurn'];
@@ -54,7 +55,7 @@ export class GameComponent implements OnInit {
       this.whoNowPlays = this.whoStartsRound;
     });
     this.pointsInRound = [0, 0];
-    this.totalPoints = [0, 0];
+    this.totalPoints = [1, 0];
     this.notesLeftInRound = this.shuffle([...this.notes]);
   }
 
@@ -196,7 +197,9 @@ export class GameComponent implements OnInit {
   }
 
   goToMain() {
-    localStorage.clear();
+    localStorage.removeItem(GameState.HOST);
+    localStorage.removeItem(GameState.USERNAME);
+    localStorage.removeItem(GameState.GAME_STATE_KEY);
     this.router.navigate([""]);
   }
 

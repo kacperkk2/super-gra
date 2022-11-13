@@ -2,7 +2,7 @@
     <div class="back-icon-wrapper" (click)="back()" >
         <mat-icon class="icon-default"  fontIcon="keyboard_arrow_left"></mat-icon>
     </div>
-    <div class="nav-title">Dołączanie do gry</div>
+    <div>Dołączanie do gry</div>
 </div>
 <div fxLayout="column" fxFlexFill fxLayoutAlign="space-evenly center">
     <div fxFlex="70">
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div fxFlex="30">
-        <button mat-raised-button class="generic-button" [disabled]="!usernameForm.valid" (click)="saveUsername()">Dalej</button>
+        <button mat-raised-button color="primary" class="generic-button" [disabled]="!usernameForm.valid" (click)="saveUsername()">Dalej</button>
     </div>
 </div>
 

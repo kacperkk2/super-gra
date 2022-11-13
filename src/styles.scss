@@ -2,30 +2,109 @@
 @use '@angular/material' as mat;
 @include mat.core();
 
-$super-gra-primary: mat.define-palette(mat.$indigo-palette);
-$super-gra-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$blue-light-palette: (
+    50 : #f2f8fc,
+    100 : #ddecf7,
+    200 : #c7e0f1,
+    300 : #b1d4eb,
+    400 : #a0cae7,
+    500 : #8fc1e3,
+    600 : #87bbe0,
+    700 : #7cb3dc,
+    800 : #72abd8,
+    900 : #609ed0,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #d6ecff,
+    A700 : #bde1ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$blue-dark-palette: (
+    50 : #eaf1f5,
+    100 : #cbdbe6,
+    200 : #a8c3d6,
+    300 : #85abc5,
+    400 : #6a99b8,
+    500 : #5087ac,
+    600 : #497fa5,
+    700 : #40749b,
+    800 : #376a92,
+    900 : #275782,
+    A100 : #c4e2ff,
+    A200 : #91c9ff,
+    A400 : #5eb0ff,
+    A700 : #45a3ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #ffffff,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+
+$blue-light: mat.define-palette($blue-light-palette);
+$blue-dark: mat.define-palette($blue-dark-palette);
 $super-gra-warn: mat.define-palette(mat.$red-palette);
-$background-color: map_get(mat.$indigo-palette, 50);
-// $super-gra-theme: mat.define-dark-theme((
-//   color: (
-//     primary: $super-gra-primary,
-//     accent: $super-gra-accent,
-//     warn: $super-gra-warn,
-//   )
-// ));
-$super-gra-theme-light: mat.define-light-theme($super-gra-primary, $super-gra-accent, $super-gra-warn);
-$super-gra-theme-dark: mat.define-dark-theme($super-gra-primary, $super-gra-accent, $super-gra-warn);
+$super-gra-theme-light: mat.define-light-theme($blue-dark, $blue-dark, $super-gra-warn);
+$super-gra-theme-dark: mat.define-dark-theme($blue-light, $blue-light, $super-gra-warn);
 
-// @include mat.all-component-themes($super-gra-theme-light);
-
-  // @include mat.all-component-themes($super-gra-theme-dark);
+// @include mat.all-component-themes($super-gra-theme-dark);
+@include mat.all-component-themes($super-gra-theme-light);
 
 .theme-light {
   @include mat.all-component-themes($super-gra-theme-light);
+  .nav {
+    background-color: map-get($super-gra-theme-light, primary, default);
+    color: #ffffff;
+  }
 }
 
 .theme-dark {
   @include mat.all-component-themes($super-gra-theme-dark);
+  .nav {
+    background-color: map-get($super-gra-theme-dark, primary, default);
+    color: #000000;
+  }
+  .team-holder {
+    border: 1px solid map-get($super-gra-theme-dark, primary, default);
+  }
+  .team-header {
+    background-color: map-get($super-gra-theme-dark, primary, default);
+    color: #000000;
+  }
+  .mat-divider {
+    border-top-color: rgb(131, 131, 131) !important;
+  }
+  .winner {
+    border: 2px solid map-get($super-gra-theme-dark, primary, default);
+  }
 }
 
 
@@ -34,16 +113,14 @@ html, body { height: 100%; margin: 0;}
 body { 
   margin: 0; 
   font-family: Roboto, "Helvetica Neue", sans-serif; 
-  font-size: 18px;
-  // background-color: map_get(mat.$indigo-palette, 50) !important;
+  font-size: 17px;
 }
 
 .nav {
-  background-color: #333333;
-  color: white;
+  background-color: map-get($super-gra-theme-light, primary, default);
+  color: #ffffff;
   height: 35px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 19px;
   padding-top: 20px;
   padding-bottom: 20px;
   position: relative;
@@ -61,4 +138,26 @@ body {
   border-radius: 30px !important;
   width: 200px;
   height: 50px;
+}
+
+.winner {
+  border: 2px solid map-get($super-gra-theme-light, primary, default);
+}
+
+.team-holder {
+  border: 1px solid map-get($super-gra-theme-light, primary, default);
+  height: 200px;
+  width: 130px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.team-header {
+  text-align: center;
+  background-color: map-get($super-gra-theme-light, primary, default);
+  color: white;
+}
+
+.mat-divider {
+  border-top-color: rgb(201, 201, 201) !important;
 }

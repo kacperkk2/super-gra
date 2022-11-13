@@ -38,3 +38,26 @@
     color: white;
     font-size: 50px;
 }
+
+.main-score {
+    font-size: 56px;
+}
+
+.dots {
+    position: absolute;
+    top: 16px
+}
+
+.score-holder {
+    position: relative;
+}
+
+
+.end-round-label {
+    font-size: 20px;
+}
+
+.winner {
+    border-radius: 30px !important;
+    border:50% 
+}

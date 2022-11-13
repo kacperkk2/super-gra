@@ -27,7 +27,7 @@
         </div>
 
         <div fxFlex="30" fxLayout="column" fxLayoutAlign="start center">
-            <button mat-raised-button class="generic-button" (click)="goToPreStart()"> Dalej </button>
+            <button mat-raised-button color="primary" class="generic-button" (click)="goToPreStart()"> Dalej </button>
         </div>
     </div>
 
@@ -36,7 +36,7 @@
             <div class="timer">{{counter | formatTime}}</div>
         </div>
         <div fxFlex="95" fxLayout="column" fxLayoutAlign="center center">
-            <button mat-raised-button class="next-note" (click)="goToTurn()"> Rozpocznij rundę! </button>
+            <button mat-raised-button color="primary" class="next-note" (click)="goToTurn()"> Rozpocznij rundę! </button>
         </div>
     </div>
 
@@ -51,16 +51,16 @@
                 </div>
             </div>
             <div fxFlex="20" fxLayout="row" fxLayoutAlign="space-between start">
-                <button mat-raised-button id="messed-card" (click)="messedCardDoubleClick()" fxLayout="column" fxLayoutAlign="center center" >
+                <button mat-raised-button color="primary" id="messed-card" (click)="messedCardDoubleClick()" fxLayout="column" fxLayoutAlign="center center" >
                     <mat-icon fxFlexFill class="decision-icon" fontIcon="clear"></mat-icon>
                 </button>
-                <button mat-raised-button id="guessed-card" (click)="guessedCardDoubleClick()" fxLayout="column" fxLayoutAlign="center center" > 
+                <button mat-raised-button color="primary" id="guessed-card" (click)="guessedCardDoubleClick()" fxLayout="column" fxLayoutAlign="center center" > 
                     <mat-icon fxFlexFill class="decision-icon" fontIcon="check"></mat-icon>
                 </button>
             </div>
         </div>
         <div *ngIf="stateInTurn == inTurnAllStates.EMPTY_VIEW" fxFlex="95" fxLayout="column" fxLayoutAlign="center center">
-            <button mat-raised-button (click)="nextCard()" class="next-note"> Pokaż hasło </button>
+            <button mat-raised-button color="primary" (click)="nextCard()" class="next-note"> Pokaż hasło </button>
         </div>
     </div>
 
@@ -80,56 +80,72 @@
         </div>
 
         <div fxFlex="30" fxLayout="column" fxLayoutAlign="start center">
-            <button mat-raised-button class="generic-button" (click)="goToNewTurnOrNewRound()"> Dalej </button>
+            <button mat-raised-button color="primary" class="generic-button" (click)="goToNewTurnOrNewRound()"> Dalej </button>
         </div>
     </div>
 
     <div *ngIf="state == allStates.AFTER_ROUND" fxLayout="column" fxFlexFill>
-        <div fxFlex="70" fxLayout="column" fxLayoutAlign="space-evenly center">
-            <div>
+        <div fxFlex="70" fxLayout="column" fxFlexFill fxLayoutAlign="space-evenly center">
+            <div fxFlex="20" class="end-round-label">
                 {{"Koniec rundy " + currentRound}}
             </div>
-            <div>
-                {{"+" + pointsInRound[0]}} {{"+" + pointsInRound[1]}}
-            </div>
-            <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                <mat-list>
-                    <mat-list-item *ngFor="let member of teams[0]" fxLayout="row" fxLayoutAlign="center center">
-                        {{member}}
-                    </mat-list-item>
-                </mat-list>
-                <div>{{totalPoints[0] + " : " + totalPoints[1]}} </div>
-                <mat-list>
-                    <mat-list-item *ngFor="let member of teams[1]" fxLayout="row" fxLayoutAlign="center center">
-                        {{member}}
-                    </mat-list-item>
-                </mat-list>
+
+            <div class="score-holder" fxFlex="75" fxLayout="row" fxFlexFill fxLayoutAlign="space-evenly start">
+                <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+                    <div>{{"+" + pointsInRound[0]}}</div>
+                    <div class="main-score">{{totalPoints[0]}}</div> 
+                    <mat-list>
+                        <mat-list-item *ngFor="let member of teams[0]" fxLayout="row" fxLayoutAlign="center center">
+                            {{member}}
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+                <div class="main-score dots">{{" : "}}</div>
+                <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+                    <div>{{"+" + pointsInRound[1]}}</div>
+                    <div class="main-score">{{totalPoints[1]}}</div>
+                    <mat-list>
+                        <mat-list-item *ngFor="let member of teams[1]" fxLayout="row" fxLayoutAlign="center center">
+                            {{member}}
+                        </mat-list-item>
+                    </mat-list>
+                </div>
             </div>
         </div>
         
         <div fxFlex="30" fxLayout="column" fxLayoutAlign="start center">
-            <button mat-raised-button class="generic-button" (click)="goToBeforeTurnOrAfterGame()"> Dalej </button>
+            <button mat-raised-button color="primary" class="generic-button" (click)="goToBeforeTurnOrAfterGame()"> Dalej </button>
         </div>
     </div>
 
     <div *ngIf="state == allStates.AFTER_GAME" fxLayout="column" fxFlexFill>
-        <div fxFlex="70" fxLayout="column" fxLayoutAlign="space-evenly center">
-            <div>
+        <div fxFlex="70" fxLayout="column" fxFlexFill fxLayoutAlign="space-evenly center">
+            <div fxFlex="20" class="end-round-label">
                 {{"Koniec gry!"}}
             </div>
-            <div *ngIf="totalPoints[0] == totalPoints[1]">
-                {{"Remis!"}}
-            </div>
-            <div *ngIf="totalPoints[0] != totalPoints[1]">
-                {{"Gurom: "}} {{totalPoints[0] > totalPoints[1] ? teams[0] : teams[1]}}
-                {{"Dołem: "}} {{totalPoints[0] > totalPoints[1] ? teams[1] : teams[0]}}
-            </div>
-            <div *ngIf="totalPoints[0] != totalPoints[1]">
-                {{(totalPoints[0] > totalPoints[1]) ? totalPoints[0] : totalPoints[1] + " : " + (totalPoints[0] > totalPoints[1]) ? totalPoints[1] : totalPoints[0]}}
+
+            <div class="score-holder" fxFlex="75" fxLayout="row" fxFlexFill fxLayoutAlign="space-evenly start">
+                <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center" [class.winner]="totalPoints[0] > totalPoints[1]">
+                    <div class="main-score">{{totalPoints[0]}}</div> 
+                    <mat-list>
+                        <mat-list-item *ngFor="let member of teams[0]" fxLayout="row" fxLayoutAlign="center center">
+                            {{member}}
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+                <div class="main-score">{{" : "}}</div>
+                <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center" [class.winner]="totalPoints[0] < totalPoints[1]">
+                    <div class="main-score">{{totalPoints[1]}}</div>
+                    <mat-list>
+                        <mat-list-item *ngFor="let member of teams[1]" fxLayout="row" fxLayoutAlign="center center">
+                            {{member}}
+                        </mat-list-item>
+                    </mat-list>
+                </div>
             </div>
         </div>
 
         <div fxFlex="30" fxLayout="column" fxLayoutAlign="start center">
-            <button mat-raised-button class="generic-button" (click)="goToMain()"> Ekran główny </button>
+            <button mat-raised-button color="primary" class="generic-button" (click)="goToMain()"> Ekran główny </button>
         </div>
     </div>

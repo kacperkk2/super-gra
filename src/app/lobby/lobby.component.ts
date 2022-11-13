@@ -84,7 +84,9 @@ export class LobbyComponent implements OnInit {
     }
     else {
       this.showNotHostStartGameDialog().subscribe(() => {
-        localStorage.clear();
+        localStorage.removeItem(GameState.HOST);
+        localStorage.removeItem(GameState.USERNAME);
+        localStorage.removeItem(GameState.GAME_STATE_KEY);
         this.router.navigate([""]);
       });
     }

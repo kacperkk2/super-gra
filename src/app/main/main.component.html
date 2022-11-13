@@ -1,7 +1,11 @@
-<div fxLayout="column" fxFlexFill fxLayoutAlign="center center">
-    <mat-slide-toggle (change)="themeSwitched($event)"> 
-        <mat-icon fontIcon="nightlight_round"></mat-icon>
-        <mat-icon fontIcon="wb_sunny"></mat-icon>
-    </mat-slide-toggle>
-    <button mat-raised-button class="generic-button" (click)="checkIfCanPlay()">Graj</button>
+<div fxLayout="column" fxFlexFill>
+    <div fxLayout="row" fxLayoutAlign="end center" >
+        <mat-slide-toggle [checked]="isDark" (change)="themeSwitched($event)" > 
+            <mat-icon *ngIf="isDark" fontIcon="nightlight_round" fxLayout="column" fxLayoutAlign="center center"></mat-icon>
+            <mat-icon *ngIf="!isDark" fontIcon="wb_sunny" fxLayout="column" fxLayoutAlign="center center"></mat-icon>
+        </mat-slide-toggle>
+    </div>
+    <div fxLayout="column" fxFlexFill fxLayoutAlign="center center">
+        <button mat-raised-button color="primary" class="generic-button" (click)="checkIfCanPlay()">Graj</button>
+    </div>
 </div>

@@ -11,8 +11,6 @@ import { ThemeService } from './services/theme.service';
 export class AppComponent {
   title = 'super-gra';
 
-  isDark: boolean = false;
-
   constructor(private themeService: ThemeService, @Inject(DOCUMENT) private document: Document, private renderer: Renderer2) {
     themeService.changeEmitted$.subscribe(change => {
         this.switchTheme(change);
@@ -20,7 +18,8 @@ export class AppComponent {
   }
 
   switchTheme(isDarkMode: any) {
-    console.log(isDarkMode);
+    console.log("w switch")
+    console.log(isDarkMode)
     this.renderer.setAttribute(this.document.body, 'class', isDarkMode ? "mat-app-background theme-dark" : " mat-app-backgroundtheme-light")
   }
 }

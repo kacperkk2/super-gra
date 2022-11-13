@@ -13,13 +13,24 @@ import { ThemeService } from '../services/theme.service';
 })
 export class MainComponent implements OnInit {
 
+  isDark: boolean = true;
+
   constructor(private notesClient: NotesClientService, private router: Router, 
     public dialog: MatDialog, private themeService: ThemeService) { }
 
   ngOnInit(): void {
+    this.isDark = true;
+    const theme = localStorage.getItem("super-gra-theme");
+    console.log(theme)
+    if (theme != null) {
+      this.isDark = (theme == "true");
+    }
+    this.themeService.emitChange(Boolean(this.isDark));
   }
 
   themeSwitched({ checked }: MatSlideToggleChange) {
+    this.isDark = checked;
+    localStorage.setItem("super-gra-theme", String(this.isDark));
     this.themeService.emitChange(checked);
   }
 
