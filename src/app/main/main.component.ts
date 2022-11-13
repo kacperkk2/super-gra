@@ -21,7 +21,6 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.isDark = true;
     const theme = localStorage.getItem("super-gra-theme");
-    console.log(theme)
     if (theme != null) {
       this.isDark = (theme == "true");
     }

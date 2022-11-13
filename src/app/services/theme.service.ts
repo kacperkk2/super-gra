@@ -10,7 +10,6 @@ export class ThemeService {
     changeEmitted$ = this.emitChangeSource.asObservable();
     
     emitChange(change: any) {
-        console.log("emited")
         this.emitChangeSource.next(change);
     }
 }

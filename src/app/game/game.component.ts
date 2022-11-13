@@ -45,8 +45,7 @@ export class GameComponent implements OnInit {
     this.notesClient.deleteAllUsers().subscribe();
     this.state = GAME_STATE.AFTER_GAME;
     this.route.queryParams.subscribe(params => {
-      // this.teams = [params['team1'], params['team2']];
-      this.teams = [['asd', 'asd'], []];
+      this.teams = [params['team1'], params['team2']];
       this.notes = params['notes'];
       this.timeForTurn = params['timeForTurn'];
       this.defaultTimeForTurn = params['timeForTurn'];
@@ -55,7 +54,7 @@ export class GameComponent implements OnInit {
       this.whoNowPlays = this.whoStartsRound;
     });
     this.pointsInRound = [0, 0];
-    this.totalPoints = [1, 0];
+    this.totalPoints = [0, 0];
     this.notesLeftInRound = this.shuffle([...this.notes]);
   }
 

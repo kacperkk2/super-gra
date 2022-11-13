@@ -18,8 +18,6 @@ export class AppComponent {
   }
 
   switchTheme(isDarkMode: any) {
-    console.log("w switch")
-    console.log(isDarkMode)
     this.renderer.setAttribute(this.document.body, 'class', isDarkMode ? "mat-app-background theme-dark" : " mat-app-backgroundtheme-light")
   }
 }

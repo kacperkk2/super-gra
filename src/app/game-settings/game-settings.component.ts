@@ -37,7 +37,6 @@ export class GameSettingsComponent implements OnInit {
     });
     this.notesClient.getNotes().subscribe(fetchedNotes => {
       this.notes = fetchedNotes.map(note => note.content);
-      console.log(this.notes);
     });
   }
 
