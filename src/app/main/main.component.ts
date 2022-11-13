@@ -37,9 +37,6 @@ export class MainComponent implements OnInit {
   checkIfCanPlay() {
     this.notesClient.checkIfGameOngoing().subscribe(gameInfo => {
         if (gameInfo.info == "no game") {
-          localStorage.removeItem(GameState.HOST);
-          localStorage.removeItem(GameState.USERNAME);
-          localStorage.removeItem(GameState.GAME_STATE_KEY);
           this.router.navigate(["join-game"]);
         }
         else {
