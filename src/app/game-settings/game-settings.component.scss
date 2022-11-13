@@ -3,6 +3,21 @@
     margin-right: 30px;
 }
 
+.team-holder {
+    height: 200px;
+    width: 130px;
+    max-width: 100%;
+    overflow: auto;
+    border-bottom-left-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+}
+
+.team-header {
+    border-top-right-radius: 30px !important;
+    border-top-left-radius: 30px !important;
+    text-align: center;
+}
+
 .smaller-fab {
     width: 40px;
     height: 40px;

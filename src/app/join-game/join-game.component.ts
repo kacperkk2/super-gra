@@ -5,7 +5,7 @@ import { NotesClientService } from '../services/notes-client.service';
 import { catchError, tap } from 'rxjs/operators';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MessageDialog } from '../dialogs/dialogs';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 interface ErrorResponse {
   errorMessage: string;
@@ -18,7 +18,7 @@ interface ErrorResponse {
 })
 export class JoinGameComponent implements OnInit {
   usernameForm = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(10)])
+    username: new FormControl('', [Validators.required, minLengthTrimed(3), Validators.maxLength(10)])
   });
   usernameValidationMessage: string = "Nick musi być dłuższy niż 3 znaki i krótszy niż 10";
 
@@ -65,5 +65,15 @@ export class JoinGameComponent implements OnInit {
 
   back() {
     this.router.navigate([""]);
+  }
+}
+
+export function minLengthTrimed(length: number): ValidatorFn {
+  return (control: AbstractControl) : ValidationErrors | null => {
+      const value = control.value as string;
+      if (!value) {
+          return null;
+      }
+      return value.trim().length < length ? {minLengthTrimed: true} : null;
   }
 }

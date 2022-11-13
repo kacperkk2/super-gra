@@ -146,14 +146,10 @@ body {
 
 .team-holder {
   border: 1px solid map-get($super-gra-theme-light, primary, default);
-  height: 200px;
-  width: 130px;
-  max-width: 100%;
-  overflow: auto;
+
 }
 
 .team-header {
-  text-align: center;
   background-color: map-get($super-gra-theme-light, primary, default);
   color: white;
 }

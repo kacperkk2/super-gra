@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
+import { GameState } from '../appSettings.module';
 import { MessageDialog } from '../dialogs/dialogs';
 import { NotesClientService } from '../services/notes-client.service';
 import { ThemeService } from '../services/theme.service';
@@ -36,6 +37,9 @@ export class MainComponent implements OnInit {
   checkIfCanPlay() {
     this.notesClient.checkIfGameOngoing().subscribe(gameInfo => {
         if (gameInfo.info == "no game") {
+          localStorage.removeItem(GameState.HOST);
+          localStorage.removeItem(GameState.USERNAME);
+          localStorage.removeItem(GameState.GAME_STATE_KEY);
           this.router.navigate(["join-game"]);
         }
         else {
