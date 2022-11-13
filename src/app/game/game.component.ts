@@ -43,7 +43,7 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.blockRefreshAndPageBack();
     this.notesClient.deleteAllUsers().subscribe();
-    this.state = GAME_STATE.AFTER_GAME;
+    this.state = GAME_STATE.BEFORE_TURN;
     this.route.queryParams.subscribe(params => {
       this.teams = [params['team1'], params['team2']];
       this.notes = params['notes'];
