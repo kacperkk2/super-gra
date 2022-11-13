@@ -1,3 +1,7 @@
 <div fxLayout="column" fxFlexFill fxLayoutAlign="center center">
+    <mat-slide-toggle (change)="themeSwitched($event)"> 
+        <mat-icon fontIcon="nightlight_round"></mat-icon>
+        <mat-icon fontIcon="wb_sunny"></mat-icon>
+    </mat-slide-toggle>
     <button mat-raised-button class="generic-button" (click)="checkIfCanPlay()">Graj</button>
 </div>

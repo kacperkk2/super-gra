@@ -29,6 +29,7 @@ import { GameComponent } from './game/game.component';
 import { FormatTimePipe } from './game/pipe';
 import { StopGameComponent } from './stop-game/stop-game.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTooltipModule,
     MatListModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

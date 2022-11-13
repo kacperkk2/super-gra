@@ -13,8 +13,20 @@ $background-color: map_get(mat.$indigo-palette, 50);
 //     warn: $super-gra-warn,
 //   )
 // ));
-$super-gra-theme: mat.define-dark-theme($super-gra-primary, $super-gra-accent, $super-gra-warn);
-@include mat.all-component-themes($super-gra-theme);
+$super-gra-theme-light: mat.define-light-theme($super-gra-primary, $super-gra-accent, $super-gra-warn);
+$super-gra-theme-dark: mat.define-dark-theme($super-gra-primary, $super-gra-accent, $super-gra-warn);
+
+// @include mat.all-component-themes($super-gra-theme-light);
+
+  // @include mat.all-component-themes($super-gra-theme-dark);
+
+.theme-light {
+  @include mat.all-component-themes($super-gra-theme-light);
+}
+
+.theme-dark {
+  @include mat.all-component-themes($super-gra-theme-dark);
+}
 
 
 
