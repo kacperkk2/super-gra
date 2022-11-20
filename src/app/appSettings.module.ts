@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 export class AppSettings {
-  public static URL: string = "https://super-gra-backend.herokuapp.com/";
+  public static URL: string = "https://super-gra-backend-production.up.railway.app/";
   public static USERS_ENDPOINT: string = AppSettings.URL + "users";
   public static NOTES_ENDPOINT: string = AppSettings.URL + "notes";
   public static GAME_ENDPOINT: string = AppSettings.URL + "game";
